@@ -1,7 +1,7 @@
-
 import fetch from 'node-fetch'
 import { getErrorMessage } from './errors'
 import { waitForSeconds } from './general'
+
 
 const RETRYABLE_STATUSES = [429]
 const BACKOFF_SECONDS = 2
