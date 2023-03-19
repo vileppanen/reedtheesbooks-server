@@ -14,4 +14,4 @@ The backend assumes that the NYT API key is provided via environment variable na
 In order to run the server, perform the following steps
 
 1. clone the repo & run `npm ci` in the repo root
-2. execute `NYT_API_KEY=<your api key> npm run start`
+2. execute `NYT_API_KEY=<your api key> npm start`
