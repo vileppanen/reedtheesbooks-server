@@ -1,0 +1,1 @@
+export const API_KEY_QSP = `api-key=${process.env.NYT_API_KEY}`
