@@ -1,5 +1,5 @@
 import chunk from 'lodash/chunk'
-import { API_KEY_QSP } from './constants'
+import { API_BASE_PATH, API_KEY_QSP } from './constants'
 import { queryReviews } from './review-handlers'
 import { NytBookList, NytBookListDetails, NytBook, ImmutableQueryResultsArray, QueryResultsMap } from './external-types'
 import { waitForSeconds } from '../../utils/general'
@@ -9,7 +9,7 @@ import { getJson } from '../../utils/http'
 
 
 export const queryBookTypes = async (): Promise<Array<BookType>> => {
-  const response = await getJson<ImmutableQueryResultsArray<NytBookList>>(`https://api.nytimes.com/svc/books/v3/lists/names.json?${API_KEY_QSP}`)
+  const response = await getJson<ImmutableQueryResultsArray<NytBookList>>(`${API_BASE_PATH}/lists/names.json?${API_KEY_QSP}`)
   return response.results.map(toBookType)
 }
 const toBookType = (nytBookList: NytBookList): BookType => ({
@@ -18,7 +18,7 @@ const toBookType = (nytBookList: NytBookList): BookType => ({
 })
 
 export const queryBooksForType = async (bookTypeCode: string): Promise<Array<Book>> => {
-  const response = await getJson<QueryResultsMap<NytBookListDetails>>(`https://api.nytimes.com/svc/books/v3/lists/current/${bookTypeCode}.json?${API_KEY_QSP}`)
+  const response = await getJson<QueryResultsMap<NytBookListDetails>>(`${API_BASE_PATH}/lists/current/${bookTypeCode}.json?${API_KEY_QSP}`)
   return response.results.books.map(toBook)
 }
 const toBook = (nytBook: NytBook) => ({
