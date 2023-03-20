@@ -21,6 +21,6 @@ const handleQuery = async (queryFn: Function, req: Request, res: Response) => {
     })
   } catch (err: any) {
     console.error(`Handling request failed: ${err.message}`)
-    res.status(err.status).send(err.message)
+    res.status(err?.status ?? 500).send(err.message)
   }
 }
