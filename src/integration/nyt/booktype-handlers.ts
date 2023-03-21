@@ -1,13 +1,10 @@
-import chunk from 'lodash/chunk'
 import { API_BASE_PATH, API_KEY_QSP } from './constants'
 import { queryReviews } from './review-handlers'
 import { NytBookList, NytBookListDetails, NytBook, ImmutableQueryResultsArray, QueryResultsMap } from './external-types'
-import { waitForSeconds } from '../../utils/general'
 import { BookType } from '../../types/booktype'
 import { Book } from '../../types/book'
 import { getJson } from '../../utils/http'
 import { getNullableString } from './utils'
-
 
 export const queryBookTypes = async (): Promise<Array<BookType>> => {
   const response = await getJson<ImmutableQueryResultsArray<NytBookList>>(`${API_BASE_PATH}/lists/names.json?${API_KEY_QSP}`)
@@ -29,7 +26,6 @@ const toBook = (nytBook: NytBook) => ({
   isbn10: getNullableString(nytBook.primary_isbn10),
   isbn13: getNullableString(nytBook.primary_isbn13)
 })
-
 
 export const queryTop10BooksForTypeWithReviews = async (bookTypeCode: string): Promise<Array<Book>> => {
   const books = await queryBooksForType(bookTypeCode)
@@ -55,5 +51,3 @@ const withReviews = async (book: Book): Promise<Book> => {
     return book
   }
 }
-
-
