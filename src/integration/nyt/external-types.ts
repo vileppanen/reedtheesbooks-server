@@ -53,3 +53,7 @@ export type NytBookReview = {
   uri: string
   isbn13: Array<string>
 }
+
+export enum NytConstants {
+  NONE = 'None'
+}

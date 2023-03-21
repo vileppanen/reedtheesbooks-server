@@ -6,6 +6,7 @@ import { waitForSeconds } from '../../utils/general'
 import { BookType } from '../../types/booktype'
 import { Book } from '../../types/book'
 import { getJson } from '../../utils/http'
+import { getNullableString } from './utils'
 
 
 export const queryBookTypes = async (): Promise<Array<BookType>> => {
@@ -25,8 +26,8 @@ const toBook = (nytBook: NytBook) => ({
   title: nytBook.title,
   author: nytBook.author,
   rank: nytBook.rank,
-  isbn10: nytBook.primary_isbn10,
-  isbn13: nytBook.primary_isbn13
+  isbn10: getNullableString(nytBook.primary_isbn10),
+  isbn13: getNullableString(nytBook.primary_isbn13)
 })
 
 
@@ -54,7 +55,7 @@ const getBooksWithReviewsIncluded = async (books: Array<Book>) => {
 
 const withReviews = async (book: Book): Promise<Book> => {
   try {
-    const reviews = await queryReviews(book.isbn10)
+    const reviews = await queryReviews(book.isbn10 ?? book.isbn13)
     return {
       ...book,
       reviews
