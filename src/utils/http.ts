@@ -4,7 +4,7 @@ import { waitForSeconds } from './general'
 
 
 const RETRYABLE_STATUSES = [429]
-const BACKOFF_SECONDS = 2
+const BACKOFF_SECONDS = 3
 const MAX_ATTEMPTS = 3
 
 export async function getJson<ResultType>(url: string, attempt: number = 1): Promise<ResultType> {
