@@ -40,17 +40,7 @@ export const queryTop10BooksForTypeWithReviews = async (bookTypeCode: string): P
 const byBookRank = (book: Book, nextBook: Book) => book.rank - nextBook.rank
 
 const getBooksWithReviewsIncluded = async (books: Array<Book>) => {
-  const reviewInclusionBatches = chunk(books.map(withReviews), 3)
-  
-  let booksWithReviews: Array<Book> = []
-  for (let reviewInclusionBatch of reviewInclusionBatches) {
-    const nextSetOfBooksWithReviews = await Promise.all(reviewInclusionBatch)
-
-    booksWithReviews = [...booksWithReviews, ...nextSetOfBooksWithReviews]
-    await waitForSeconds(2)
-  }
-
-  return booksWithReviews
+  return await Promise.all(books.map(withReviews))
 }
 
 const withReviews = async (book: Book): Promise<Book> => {
