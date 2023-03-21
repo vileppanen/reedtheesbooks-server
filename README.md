@@ -1,6 +1,6 @@
 # reedtheesbooks-server
 
-This project contains NodeJS Express backend-server for `reedtheesbooks-client` implemented with Typescript. The server integrates with New York Times API & enables the client to retrieve list of book genres & top 10 ranked books within each genre, with optional reviews included.
+This project contains NodeJS Express backend-server for [`reedtheesbooks-client`](https://github.com/vileppanen/reedtheesbooks-client) implemented with Typescript. The server integrates with New York Times API & enables the client to retrieve list of book genres & top 10 ranked books within each genre, with optional reviews included.
 
 ## Prerequisites
 In order to query genres & books from the NYT (a.k.a New York Times) API, you need to setup & configure your own API key for it (instructions can be found at https://developer.nytimes.com/get-started).
